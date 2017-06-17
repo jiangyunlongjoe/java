@@ -1,0 +1,16 @@
+java:
+  restart: always
+  tty: true
+  image: 192.168.43.10:5002/joe/java-demo:$$BUILD_NUMBER$$
+  stdin_open: true
+javalb:
+  ports:
+  - $$PORT_NUMBER$$:8080
+  restart: always
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - java:java
+  stdin_open: true
+  labels:
+    appsoar.dashboard.entrypoint.tomcat: http://{ip}:{port}/javademo

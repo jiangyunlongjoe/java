@@ -1,0 +1,14 @@
+java:
+  scale: 2
+  health_check:
+    port: 8080
+    interval: 4000
+    unhealthy_threshold: 3
+    strategy: recreate
+    request_line: GET "/javademo/index.jsp" "HTTP/1.0"
+    response_timeout: 15000
+    healthy_threshold: 2
+javalb:
+  scale: 1
+  load_balancer_config:
+    name: javalb config
